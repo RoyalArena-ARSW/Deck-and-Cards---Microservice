@@ -1,15 +1,7 @@
 package edu.eci.arsw.RoyalArena.model;
 
-import com.royalarena.cards.model.enums.CardType;
-import com.royalarena.cards.model.enums.Rarity;
-
+import edu.eci.arsw.RoyalArena.model.enums.CardType;
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.DiscriminatorType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
