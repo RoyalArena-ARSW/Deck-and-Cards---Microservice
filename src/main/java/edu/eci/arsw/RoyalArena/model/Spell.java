@@ -25,7 +25,7 @@ import lombok.experimental.SuperBuilder;
 public class Spell extends Card {
 
     /**
-     * Daño que inflige al impactar (para hechizos de daño). 0 si es soporte (Curación).
+     * Daño que inflige al impactar (para hechizos de daño).
      */
     @Column(name = "damage")
     private Integer damage;

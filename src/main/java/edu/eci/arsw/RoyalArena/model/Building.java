@@ -40,8 +40,14 @@ public class Building extends Card {
      * Duración en segundos antes de autodestruirse.
      * Todas las estructuras en CR tienen tiempo de vida limitado.
      */
-    @Column(name = "lifetime")
-    private Integer lifetime;
+    @Column(name = "lifetime_seconds")
+    private Integer lifetimeSeconds;
+
+    /**
+     * Daño automático por segundo que la estructura se auto-inflige.
+     */
+    @Column(name = "self_damage_per_second")
+    private Double selfDamagePerSecond;
 
     /**
      * Alcance de ataque en tiles. 0 si no ataca.
@@ -74,4 +80,18 @@ public class Building extends Card {
      */
     @Column(name = "spawned_unit", length = 50)
     private String spawnedUnit;
+
+    /**
+     * Intervalo en segundos entre spawns de tropas.
+     * Solo aplica si isSpawner = true. Ej: Goblin Hut = 4.7s.
+     */
+    @Column(name = "spawn_interval_seconds")
+    private Double spawnIntervalSeconds;
+
+    /**
+     * Cuántas tropas genera por cada spawn.
+     * Ej: Barbarian Hut = 1 barbarian, Furnace = 2 fire spirits.
+     */
+    @Column(name = "spawn_count")
+    private Integer spawnCount;
 }
