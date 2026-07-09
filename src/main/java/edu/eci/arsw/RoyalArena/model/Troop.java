@@ -1,6 +1,9 @@
 package edu.eci.arsw.RoyalArena.model;
 
 
+import edu.eci.arsw.RoyalArena.model.enums.Target;
+import edu.eci.arsw.RoyalArena.model.enums.MovementSpeed;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
