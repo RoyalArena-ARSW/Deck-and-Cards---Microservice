@@ -1,9 +1,9 @@
-package edu.eci.dto.response;
+package edu.eci.arsw.RoyalArena.dto.response;
 
 
-import com.royalarena.cards.model.enums.MovementSpeed;
-import com.royalarena.cards.model.enums.Target;
 
+import edu.eci.arsw.RoyalArena.model.enums.MovementSpeed;
+import edu.eci.arsw.RoyalArena.model.enums.Target;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

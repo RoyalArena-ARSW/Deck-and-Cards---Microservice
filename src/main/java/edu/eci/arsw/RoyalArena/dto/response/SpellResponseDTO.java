@@ -1,9 +1,4 @@
-package edu.eci.dto.response;
-
-package com.royalarena.cards.dto.response;
-
-import com.royalarena.cards.model.enums.EffectType;
-import com.royalarena.cards.model.enums.Target;
+package edu.eci.arsw.RoyalArena.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

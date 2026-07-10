@@ -1,8 +1,4 @@
-package edu.eci.dto.response;
-
-package com.royalarena.cards.dto.response;
-
-import com.royalarena.cards.model.enums.Target;
+package edu.eci.arsw.RoyalArena.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +18,7 @@ public class BuildingResponseDTO extends CardResponseDTO {
     private Integer lifetime;
     private Double attackRange;
     private Double attackSpeed;
-    private Target target;
+    private String target;
     private Boolean isSpawner;
     private String spawnedUnit;
 }

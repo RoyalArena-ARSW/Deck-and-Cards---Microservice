@@ -1,7 +1,10 @@
-package edu.eci.dto.request;
+package edu.eci.arsw.RoyalArena.dto.request;
 
 
 
+import edu.eci.arsw.RoyalArena.model.enums.EffectType;
+import edu.eci.arsw.RoyalArena.model.enums.Rarity;
+import edu.eci.arsw.RoyalArena.model.enums.Target;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -18,19 +21,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TroopRequestDTO {
+public class SpellRequestDTO {
 
-    // ----- Campos heredados de Card -----
-    @NotBlank(message = "Name is required")
-    @Size(max = 50)
+    @NotBlank @Size(max = 50)
     private String name;
 
-    @NotBlank
-    @Size(max = 500)
+    @NotBlank @Size(max = 500)
     private String description;
 
-    @Min(value = 1, message = "Elixir cost must be between 1 and 10")
-    @Max(10)
+    @Min(1) @Max(10)
     private int elixirCost;
 
     @NotNull
@@ -44,28 +43,19 @@ public class TroopRequestDTO {
 
     private String imageUrl;
 
-    // ----- Campos específicos de Troop -----
+    // ----- Campos específicos de Spell -----
     @NotNull @Min(0)
     private Integer damage;
 
-    @NotNull @Min(1)
-    private Integer health;
-
-    @NotNull
-    private Boolean isAerial;
-
-    @NotNull @DecimalMin("0.1")
-    private Double attackSpeed;
-
-    @NotNull
-    private MovementSpeed movementSpeed;
+    @NotNull @DecimalMin("0.5")
+    private Double effectRadius;
 
     @NotNull @DecimalMin("0.0")
-    private Double attackRange;
+    private Double duration;
 
     @NotNull
     private Target target;
 
-    @NotNull @Min(1)
-    private Integer unitCount;
+    @NotNull
+    private EffectType effectType;
 }

@@ -1,11 +1,11 @@
-package edu.eci.dto.response;
+package edu.eci.arsw.RoyalArena.dto.response;
 
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.royalarena.cards.model.enums.CardType;
-import com.royalarena.cards.model.enums.Rarity;
 
+import edu.eci.arsw.RoyalArena.model.enums.CardType;
+import edu.eci.arsw.RoyalArena.model.enums.Rarity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
