@@ -1,9 +1,8 @@
-package edu.eci.dto.request;
+package edu.eci.arsw.RoyalArena.dto.request;
 
-
-import com.royalarena.cards.model.enums.Rarity;
-import com.royalarena.cards.model.enums.Target;
-
+import edu.eci.arsw.RoyalArena.model.enums.Rarity;
+import edu.eci.arsw.RoyalArena.model.enums.Target;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -66,4 +65,8 @@ public class BuildingRequestDTO {
 
     @Size(max = 50)
     private String spawnedUnit;
+
+    private Double spawnIntervalSeconds;
+
+    private Integer spawnCount;
 }

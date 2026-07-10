@@ -1,5 +1,8 @@
 package edu.eci.arsw.RoyalArena.dto.response;
 
+import edu.eci.arsw.RoyalArena.model.enums.EffectType;
+import edu.eci.arsw.RoyalArena.model.enums.Target;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

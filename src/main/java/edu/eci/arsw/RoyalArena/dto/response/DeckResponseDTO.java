@@ -1,4 +1,4 @@
-package edu.eci.dto.response;
+package edu.eci.arsw.RoyalArena.dto.response;
 
 
 import java.time.LocalDateTime;
@@ -20,13 +20,7 @@ public class DeckResponseDTO {
     private Long userId;
     private Boolean isActive;
 
-    /**
-     * Lista polimórfica: cada elemento es TroopResponseDTO, SpellResponseDTO
-     * o BuildingResponseDTO. Jackson agrega el campo "type" a cada uno
-     * gracias al @JsonTypeInfo de CardResponseDTO.
-     */
     private List<CardResponseDTO> cards;
 
     private double averageElixirCost;
-    private LocalDateTime createdAt;
 }

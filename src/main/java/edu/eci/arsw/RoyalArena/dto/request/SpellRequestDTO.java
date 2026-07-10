@@ -5,6 +5,7 @@ package edu.eci.arsw.RoyalArena.dto.request;
 import edu.eci.arsw.RoyalArena.model.enums.EffectType;
 import edu.eci.arsw.RoyalArena.model.enums.Rarity;
 import edu.eci.arsw.RoyalArena.model.enums.Target;
+
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

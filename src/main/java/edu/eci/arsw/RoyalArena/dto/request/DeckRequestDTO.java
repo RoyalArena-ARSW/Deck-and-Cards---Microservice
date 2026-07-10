@@ -1,4 +1,4 @@
-package edu.eci.dto.request;
+package edu.eci.arsw.RoyalArena.dto.request;
 
 
 import java.util.List;
@@ -32,7 +32,4 @@ public class DeckRequestDTO {
 
     private Boolean isActive;
 
-    // Ojo: NO va userId aquí. Lo saca el service del header X-User-Id
-    // que inyecta el Gateway después de validar el JWT — mismo patrón
-    // que usamos en TechCup con captainId.
 }
