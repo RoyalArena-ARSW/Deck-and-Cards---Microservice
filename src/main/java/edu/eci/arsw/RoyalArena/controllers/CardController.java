@@ -43,27 +43,6 @@ public class CardController {
         return ResponseEntity.ok(cardService.getCardByName(name));
     }
 
-    /**
-     * Lista todas las cartas del catálogo. Admite filtros opcionales via query params:
-     *   /api/cards
-     *   /api/cards?rarity=EPIC
-     *   /api/cards?type=TROOP
-     *   /api/cards?elixirCost=3
-     */
-    @GetMapping
-    public ResponseEntity<List<CardResponseDTO>> getCards(
-            @RequestParam(required = false) Rarity rarity,
-            @RequestParam(required = false) CardType type,
-            @RequestParam(required = false) Integer elixirCost) {
-
-        log.info("GET /api/cards - filters: rarity={}, type={}, elixirCost={}",
-                rarity, type, elixirCost);
-
-        if (rarity != null) return ResponseEntity.ok(cardService.getCardsByRarity(rarity));
-        if (type != null) return ResponseEntity.ok(cardService.getCardsByType(type));
-        if (elixirCost != null) return ResponseEntity.ok(cardService.getCardsByElixirCost(elixirCost));
-        return ResponseEntity.ok(cardService.getAllCards());
-    }
 
     @GetMapping
     public ResponseEntity<List<CardResponseDTO>> getCards(
