@@ -14,13 +14,21 @@ import edu.eci.arsw.RoyalArena.model.Troop;
     componentModel = "spring",
     uses = { TroopMapper.class, SpellMapper.class, BuildingMapper.class }
 )
-public interface CardMapper {
+public abstract class CardMapper {
 
-    /**
-     * Convierte una carta cualquiera al DTO específico correspondiente.
-     */
-    default CardResponseDTO toDto(Card card, TroopMapper troopMapper,
-                                   SpellMapper spellMapper, BuildingMapper buildingMapper) {
+    protected TroopMapper troopMapper;
+    protected SpellMapper spellMapper;
+    protected BuildingMapper buildingMapper;
+
+    public CardMapper(TroopMapper troopMapper, SpellMapper spellMapper, BuildingMapper buildingMapper) {
+        this.troopMapper = troopMapper;
+        this.spellMapper = spellMapper;
+        this.buildingMapper = buildingMapper;
+    }
+
+    protected CardMapper() {}
+
+    public CardResponseDTO toDto(Card card) {
         if (card == null) return null;
         if (card instanceof Troop troop) return troopMapper.toDto(troop);
         if (card instanceof Spell spell) return spellMapper.toDto(spell);
@@ -28,11 +36,8 @@ public interface CardMapper {
         throw new IllegalStateException("Unknown Card subtype: " + card.getClass().getName());
     }
 
-    default List<CardResponseDTO> toDtoList(List<Card> cards, TroopMapper troopMapper,
-                                             SpellMapper spellMapper, BuildingMapper buildingMapper) {
+    public List<CardResponseDTO> toDtoList(List<Card> cards) {
         if (cards == null) return List.of();
-        return cards.stream()
-                .map(c -> toDto(c, troopMapper, spellMapper, buildingMapper))
-                .toList();
+        return cards.stream().map(this::toDto).toList();
     }
 }
