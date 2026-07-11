@@ -9,4 +9,4 @@ public enum EffectType {
     SLOW,               // Hielo
     HEAL,               // Curación
     STUN                // Descarga eléctrica
-}
+} 

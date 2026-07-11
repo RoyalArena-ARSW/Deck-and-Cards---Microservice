@@ -25,32 +25,33 @@
     </properties>
 
     <dependencies>
-        <!-- Web: controllers REST -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- JPA + Hibernate: @Entity, @Table, repositorios -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Validaciones: @Valid, @NotBlank, @Size en DTOs -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- Driver de PostgreSQL -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Lombok: @Data, @Builder, @SuperBuilder, @Slf4j, etc. -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -58,25 +59,17 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- MapStruct: mappers automáticos entre entidad y DTO -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
         </dependency>
 
-        <!-- Tests: JUnit 5, Mockito, Spring Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -94,12 +87,6 @@
                 </configuration>
             </plugin>
 
-            <!-- 
-                Compiler con annotation processors.
-                IMPORTANTE: el orden importa — Lombok debe ir ANTES que MapStruct,
-                y lombok-mapstruct-binding es el pegamento entre ambos.
-                Si no, MapStruct no ve los getters/setters generados por Lombok.
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
