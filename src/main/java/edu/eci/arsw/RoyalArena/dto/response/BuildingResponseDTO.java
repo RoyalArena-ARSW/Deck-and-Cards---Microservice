@@ -15,10 +15,13 @@ public class BuildingResponseDTO extends CardResponseDTO {
 
     private Integer health;
     private Integer damage;
-    private Integer lifetime;
+    private Integer lifetimeSeconds;
+    private Double selfDamagePerSecond;
     private Double attackRange;
     private Double attackSpeed;
     private String target;
     private Boolean isSpawner;
     private String spawnedUnit;
+    private Double spawnIntervalSeconds;
+    private Integer spawnCount;
 }

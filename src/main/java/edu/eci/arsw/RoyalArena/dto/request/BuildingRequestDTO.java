@@ -49,7 +49,10 @@ public class BuildingRequestDTO {
     private Integer damage;
 
     @NotNull @Min(1)
-    private Integer lifetime;
+    private Integer lifetimeSeconds;
+
+    @NotNull @DecimalMin("0.0")
+    private Double selfDamagePerSecond;
 
     @NotNull @DecimalMin("0.0")
     private Double attackRange;
