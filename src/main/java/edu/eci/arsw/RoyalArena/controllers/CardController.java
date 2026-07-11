@@ -64,4 +64,34 @@ public class CardController {
         if (elixirCost != null) return ResponseEntity.ok(cardService.getCardsByElixirCost(elixirCost));
         return ResponseEntity.ok(cardService.getAllCards());
     }
+
+    @GetMapping
+    public ResponseEntity<List<CardResponseDTO>> getCards(
+            @RequestParam(required = false) Rarity rarity,
+            @RequestParam(required = false) CardType type,
+            @RequestParam(required = false) Integer elixirCost,
+            @RequestParam(required = false, defaultValue = "false") boolean sorted) {
+
+        log.info("GET /api/cards - filters: rarity={}, type={}, elixirCost={}, sorted={}",
+                rarity, type, elixirCost, sorted);
+
+        if (rarity != null) {
+            return ResponseEntity.ok(sorted
+                    ? cardService.getCardsByRaritySorted(rarity)
+                    : cardService.getCardsByRarity(rarity));
+        }
+        if (type != null) {
+            return ResponseEntity.ok(sorted
+                    ? cardService.getCardsByTypeSorted(type)
+                    : cardService.getCardsByType(type));
+        }
+        if (elixirCost != null) {
+            return ResponseEntity.ok(sorted
+                    ? cardService.getCardsByElixirCostSorted(elixirCost)
+                    : cardService.getCardsByElixirCost(elixirCost));
+        }
+        return ResponseEntity.ok(sorted
+                ? cardService.getAllCardsSorted()
+                : cardService.getAllCards());
+    }
 }

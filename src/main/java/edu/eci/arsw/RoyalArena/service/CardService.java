@@ -57,4 +57,24 @@ public class CardService {
     public List<CardResponseDTO> getCardsByElixirCost(int elixirCost) {
         return cardMapper.toDtoList(cardRepository.findByElixirCost(elixirCost));
     }
+
+    @Transactional(readOnly = true)
+    public List<CardResponseDTO> getAllCardsSorted() {
+        return cardMapper.toDtoList(cardRepository.findAllByOrderByRarityAscNameAsc());
+    }
+
+    @Transactional(readOnly = true)
+    public List<CardResponseDTO> getCardsByRaritySorted(Rarity rarity) {
+        return cardMapper.toDtoList(cardRepository.findByRarityOrderByNameAsc(rarity));
+    }
+
+    @Transactional(readOnly = true)
+    public List<CardResponseDTO> getCardsByTypeSorted(CardType type) {
+        return cardMapper.toDtoList(cardRepository.findByTypeOrderByRarityAscNameAsc(type));
+    }
+
+    @Transactional(readOnly = true)
+    public List<CardResponseDTO> getCardsByElixirCostSorted(int elixirCost) {
+        return cardMapper.toDtoList(cardRepository.findByElixirCostOrderByRarityAscNameAsc(elixirCost));
+    }
 }

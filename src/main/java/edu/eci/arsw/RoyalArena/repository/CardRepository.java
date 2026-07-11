@@ -25,4 +25,12 @@ public interface CardRepository extends JpaRepository<Card, Long> {
     List<Card> findByElixirCost(int elixirCost);
 
     boolean existsByName(String name);
+
+    List<Card> findAllByOrderByRarityAscNameAsc();
+
+    List<Card> findByRarityOrderByNameAsc(Rarity rarity);
+
+    List<Card> findByTypeOrderByRarityAscNameAsc(CardType type);
+
+    List<Card> findByElixirCostOrderByRarityAscNameAsc(int elixirCost);
 }
