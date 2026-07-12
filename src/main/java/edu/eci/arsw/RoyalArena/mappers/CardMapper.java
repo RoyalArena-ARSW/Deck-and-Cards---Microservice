@@ -3,6 +3,7 @@ package edu.eci.arsw.RoyalArena.mappers;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.eci.arsw.RoyalArena.dto.response.CardResponseDTO;
 import edu.eci.arsw.RoyalArena.model.Building;
@@ -16,8 +17,11 @@ import edu.eci.arsw.RoyalArena.model.Troop;
 )
 public abstract class CardMapper {
 
+    @Autowired
     protected TroopMapper troopMapper;
+    @Autowired
     protected SpellMapper spellMapper;
+    @Autowired
     protected BuildingMapper buildingMapper;
 
     public CardMapper(TroopMapper troopMapper, SpellMapper spellMapper, BuildingMapper buildingMapper) {
