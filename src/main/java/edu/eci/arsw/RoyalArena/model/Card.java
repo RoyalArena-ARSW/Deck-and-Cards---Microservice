@@ -1,7 +1,10 @@
 package edu.eci.arsw.RoyalArena.model;
 
 import edu.eci.arsw.RoyalArena.model.enums.CardType;
+import edu.eci.arsw.RoyalArena.model.enums.DeploymentType;
 import edu.eci.arsw.RoyalArena.model.enums.Rarity;
+import edu.eci.arsw.RoyalArena.model.enums.DeploymentType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
@@ -16,6 +19,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -72,4 +76,12 @@ public abstract class Card {
     @Enumerated(EnumType.STRING)
     @Column(name = "card_type", nullable = false, insertable = false, updatable = false)
     private CardType type;
+
+    /**
+     * Define dónde puede desplegarse la carta en el tablero.
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "deployment_type", nullable = false, length = 20)
+    @Builder.Default
+    private DeploymentType deploymentType = DeploymentType.OWN_SIDE;
 }
