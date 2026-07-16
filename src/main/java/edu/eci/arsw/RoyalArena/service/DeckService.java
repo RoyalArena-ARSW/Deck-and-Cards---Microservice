@@ -148,7 +148,7 @@ public class DeckService {
      */
     @Transactional(readOnly = true)
     public DeckResponseDTO getActiveDeckByUserId(Long userId) {
-        Deck deck = deckRepository.findByUserIdAndActiveTrue(userId)
+        Deck deck = deckRepository.findByUserIdAndIsActiveTrue(userId)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "No active deck found for user " + userId));
         return deckMapper.toDto(deck);
