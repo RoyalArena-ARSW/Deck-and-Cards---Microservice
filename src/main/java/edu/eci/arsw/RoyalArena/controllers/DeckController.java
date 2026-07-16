@@ -93,7 +93,7 @@ public class DeckController {
     /**
      * Mazo activo de un usuario específico. Uso interno (Game Engine).
      */
-    @GetMapping("/user/{userId:\\d+}/active")
+    @GetMapping("/user/{userId}/active")
     public ResponseEntity<DeckResponseDTO> getActiveDeckByUserId(@PathVariable Long userId) {
         log.info("GET /api/decks/user/{}/active", userId);
         return ResponseEntity.ok(deckService.getActiveDeckByUserId(userId));
