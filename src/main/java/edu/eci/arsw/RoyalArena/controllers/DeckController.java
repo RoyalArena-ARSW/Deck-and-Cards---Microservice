@@ -89,4 +89,13 @@ public class DeckController {
         deckService.deleteDeck(id, userId);
         return ResponseEntity.noContent().build();
     }
+
+    /**
+     * Mazo activo de un usuario específico. Uso interno (Game Engine).
+     */
+    @GetMapping("/user/{userId}/active")
+    public ResponseEntity<DeckResponseDTO> getActiveDeckByUserId(@PathVariable Long userId) {
+        log.info("GET /api/decks/user/{}/active", userId);
+        return ResponseEntity.ok(deckService.getActiveDeckByUserId(userId));
+    }
 }

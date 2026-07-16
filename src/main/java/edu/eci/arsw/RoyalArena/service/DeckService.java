@@ -140,4 +140,17 @@ public class DeckService {
             log.debug("Deactivated deck {} for user {}", current.getId(), userId);
         });
     }
+
+    /**
+     * Mazo activo de CUALQUIER usuario. Endpoint interno para Game Engine:
+     * a diferencia de getMyActiveDeck, el userId viene por path, no del header.
+     * El @Transactional cubre el mapeo de las cartas (evita LazyInitializationException).
+     */
+    @Transactional(readOnly = true)
+    public DeckResponseDTO getActiveDeckByUserId(Long userId) {
+        Deck deck = deckRepository.findByUserIdAndActiveTrue(userId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No active deck found for user " + userId));
+        return deckMapper.toDto(deck);
+    }
 }

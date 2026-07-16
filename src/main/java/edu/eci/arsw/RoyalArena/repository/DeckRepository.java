@@ -16,4 +16,6 @@ public interface DeckRepository extends JpaRepository<Deck, Long> {
     Optional<Deck> findByUserIdAndIsActiveTrue(Long userId);
 
     boolean existsByUserIdAndName(Long userId, String name);
+
+    Optional<Deck> findByUserIdAndActiveTrue(Long userId);
 }
