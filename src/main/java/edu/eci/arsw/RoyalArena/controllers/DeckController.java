@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.eci.arsw.RoyalArena.dto.request.DeckRequestDTO;
+import edu.eci.arsw.RoyalArena.dto.request.UpdateDeckCardsRequestDTO;
 import edu.eci.arsw.RoyalArena.dto.response.DeckResponseDTO;
 import edu.eci.arsw.RoyalArena.service.DeckService;
 
@@ -79,6 +80,19 @@ public class DeckController {
             @RequestHeader("X-User-Id") Long userId) {
         log.info("PUT /api/decks/{}/activate - user {}", id, userId);
         return ResponseEntity.ok(deckService.setActiveDeck(id, userId));
+    }
+
+    /**
+     * Reemplaza las cartas de un mazo existente. El mazo debe pertenecer al usuario.
+     */
+    @PutMapping("/{id}/cards")
+    public ResponseEntity<DeckResponseDTO> updateDeckCards(
+            @PathVariable Long id,
+            @RequestHeader("X-User-Id") Long userId,
+            @Valid @RequestBody UpdateDeckCardsRequestDTO request) {
+        log.info("PUT /api/decks/{}/cards - user {} - {} cartas",
+                id, userId, request.getCardIds().size());
+        return ResponseEntity.ok(deckService.updateDeckCards(id, userId, request.getCardIds()));
     }
 
     @DeleteMapping("/{id}")
