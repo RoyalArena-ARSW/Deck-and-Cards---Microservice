@@ -72,4 +72,12 @@ public class Troop extends Card {
      */
     @Column(name = "unit_count")
     private Integer unitCount;
+
+    /**
+     * Radio de salpicadura del ataque, en tiles. 0 = objetivo único.
+     * Las cartas con daño en área (Valkyrie, Bomber, Baby Dragon) golpean a
+     * todos los enemigos dentro de este radio del objetivo.
+     */
+    @Column(name = "splash_radius")
+    private Double splashRadius;
 }
