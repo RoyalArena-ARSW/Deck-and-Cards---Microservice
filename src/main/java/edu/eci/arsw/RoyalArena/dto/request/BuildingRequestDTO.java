@@ -72,4 +72,5 @@ public class BuildingRequestDTO {
     private Double spawnIntervalSeconds;
 
     private Integer spawnCount;
+    
 }

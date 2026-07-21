@@ -2,6 +2,7 @@ package edu.eci.arsw.RoyalArena.dto.request;
 
 
 
+import edu.eci.arsw.RoyalArena.model.enums.DeploymentType;
 import edu.eci.arsw.RoyalArena.model.enums.EffectType;
 import edu.eci.arsw.RoyalArena.model.enums.Rarity;
 import edu.eci.arsw.RoyalArena.model.enums.Target;
@@ -59,4 +60,6 @@ public class SpellRequestDTO {
 
     @NotNull
     private EffectType effectType;
+
+    private DeploymentType deploymentType;
 }

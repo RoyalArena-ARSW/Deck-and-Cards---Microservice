@@ -74,11 +74,10 @@ public class Deck {
      */
     @Transient
     public double getAverageElixirCost() {
-        if (cards == null || cards.isEmpty()) return 0.0;
-        return cards.stream()
-                .mapToInt(Card::getElixirCost)
-                .average()
-                .orElse(0.0);
+        if (cards == null || cards.isEmpty()) {
+            return 0.0;
+        }
+        return cards.stream().mapToInt(Card::getElixirCost).average().orElse(0.0);
     }
 
     /**

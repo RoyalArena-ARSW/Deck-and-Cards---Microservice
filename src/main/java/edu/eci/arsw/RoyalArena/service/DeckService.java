@@ -11,6 +11,7 @@ import edu.eci.arsw.RoyalArena.dto.request.DeckRequestDTO;
 import edu.eci.arsw.RoyalArena.dto.response.DeckResponseDTO;
 import edu.eci.arsw.RoyalArena.exception.InvalidDeckException;
 import edu.eci.arsw.RoyalArena.exception.ResourceNotFoundException;
+import edu.eci.arsw.RoyalArena.exception.UnauthorizedException;
 import edu.eci.arsw.RoyalArena.mappers.DeckMapper;
 import edu.eci.arsw.RoyalArena.model.Card;
 import edu.eci.arsw.RoyalArena.model.Deck;
@@ -117,6 +118,35 @@ public class DeckService {
         return deckMapper.toDto(saved);
     }
 
+    /**
+     * Reemplaza las cartas de un mazo. Valida propiedad, cantidad y duplicados.
+     */
+    @Transactional
+    public DeckResponseDTO updateDeckCards(Long deckId, Long userId, List<Long> cardIds) {
+        Deck deck = deckRepository.findById(deckId)
+                .orElseThrow(() -> new ResourceNotFoundException("Mazo no encontrado: " + deckId));
+
+        // El mazo debe ser del usuario que lo edita
+        if (!deck.getUserId().equals(userId)) {
+            throw new UnauthorizedException("Ese mazo no te pertenece");
+        }
+
+        // Sin cartas repetidas
+        if (cardIds.stream().distinct().count() != cardIds.size()) {
+            throw new InvalidDeckException("El mazo no puede tener cartas repetidas");
+        }
+
+        // Traer las 8 cartas y verificar que todas existan
+        List<Card> cards = cardRepository.findAllById(cardIds);
+        if (cards.size() != cardIds.size()) {
+            throw new InvalidDeckException("Alguna carta no existe en el catálogo");
+        }
+
+        deck.setCards(cards);
+        Deck saved = deckRepository.save(deck);
+        return deckMapper.toDto(saved);
+    }
+
     @Transactional
     public void deleteDeck(Long id, Long userId) {
         Deck deck = deckRepository.findById(id)
@@ -139,5 +169,18 @@ public class DeckService {
             deckRepository.save(current);
             log.debug("Deactivated deck {} for user {}", current.getId(), userId);
         });
+    }
+
+    /**
+     * Mazo activo de CUALQUIER usuario. Endpoint interno para Game Engine:
+     * a diferencia de getMyActiveDeck, el userId viene por path, no del header.
+     * El @Transactional cubre el mapeo de las cartas (evita LazyInitializationException).
+     */
+    @Transactional(readOnly = true)
+    public DeckResponseDTO getActiveDeckByUserId(Long userId) {
+        Deck deck = deckRepository.findByUserIdAndIsActiveTrue(userId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No active deck found for user " + userId));
+        return deckMapper.toDto(deck);
     }
 }
