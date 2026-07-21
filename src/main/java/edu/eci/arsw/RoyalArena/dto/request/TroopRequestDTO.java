@@ -2,6 +2,7 @@ package edu.eci.arsw.RoyalArena.dto.request;
 
 
 
+import edu.eci.arsw.RoyalArena.model.enums.DeploymentType;
 import edu.eci.arsw.RoyalArena.model.enums.MovementSpeed;
 import edu.eci.arsw.RoyalArena.model.enums.Rarity;
 import edu.eci.arsw.RoyalArena.model.enums.Target;
@@ -71,4 +72,6 @@ public class TroopRequestDTO {
 
     @NotNull @Min(1)
     private Integer unitCount;
+
+    private DeploymentType deploymentType;
 }

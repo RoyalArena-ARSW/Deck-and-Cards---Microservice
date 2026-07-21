@@ -25,4 +25,5 @@ public class TroopResponseDTO extends CardResponseDTO {
     private Double attackRange;
     private Target target;
     private Integer unitCount;
+    private Double splashRadius;
 }

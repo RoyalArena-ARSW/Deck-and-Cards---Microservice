@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import edu.eci.arsw.RoyalArena.model.enums.CardType;
+import edu.eci.arsw.RoyalArena.model.enums.DeploymentType;
 import edu.eci.arsw.RoyalArena.model.enums.Rarity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,4 +42,5 @@ public class CardResponseDTO {
     private int unlockArena;
     private String imageUrl;
     private CardType type;
+    private DeploymentType deploymentType;
 }
